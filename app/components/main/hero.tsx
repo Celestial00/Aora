@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Typography from "../common/Typography";
+import { cubicBezier } from "framer-motion";
 
 export default function Hero() {
   const containerVariants = {
@@ -21,7 +22,10 @@ export default function Hero() {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] },
+      transition: {
+        duration: 0.8,
+        ease: cubicBezier(0.21, 0.47, 0.32, 0.98),
+      },
     },
   };
 

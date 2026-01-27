@@ -5,13 +5,17 @@ import { motion } from "framer-motion";
 import ContactForm from "../main/ContactForm"; // Using your animated form
 import Typography from "../common/Typography";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { cubicBezier } from "framer-motion"; // optional helper
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as any, // bypass TS check (less safe)
+    },
   },
 };
 
@@ -40,7 +44,6 @@ export default function ContactPage() {
             </p>
           </motion.div>
 
-
           <motion.div variants={itemVariants} className="space-y-6 pt-8">
             <div className="flex items-center gap-4 group cursor-default">
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500">
@@ -67,8 +70,10 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-
-          <motion.div variants={itemVariants} className="pt-10 md:flex-row flex-col justify-center   flex gap-8">
+          <motion.div
+            variants={itemVariants}
+            className="pt-10 md:flex-row flex-col justify-center   flex gap-8"
+          >
             {["Twitter", "LinkedIn", "Instagram"].map((social) => (
               <a
                 key={social}
@@ -81,7 +86,6 @@ export default function ContactPage() {
           </motion.div>
         </motion.div>
 
-    
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
