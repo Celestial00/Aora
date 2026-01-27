@@ -2,18 +2,21 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Variants, cubicBezier } from "framer-motion";
 
 export default function Footer() {
   const [year] = useState({
     curYear: new Date().getFullYear(),
   });
-
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: {
+        duration: 0.6,
+        ease: cubicBezier(0.21, 0.47, 0.32, 0.98), // ✅ TS-safe cubic-bezier
+      },
     },
   };
 
