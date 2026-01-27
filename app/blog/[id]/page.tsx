@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import Typography from "../../components/common/Typography";
+import { cubicBezier } from "framer-motion";
 
 export default function BlogPostPage() {
   // Reading progress bar logic
@@ -18,7 +19,10 @@ export default function BlogPostPage() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] },
+      transition: {
+        duration: 0.8,
+        ease: cubicBezier(0.21, 0.47, 0.32, 0.98),
+      },
     },
   };
 
