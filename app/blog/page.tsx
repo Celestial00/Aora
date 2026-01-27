@@ -3,6 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Typography from "../components/common/Typography";
+import { cubicBezier } from "framer-motion";
+
 
 const BLOG_POSTS = [
   {
@@ -31,6 +33,7 @@ const BLOG_POSTS = [
   },
 ];
 
+
 export default function BlogPage() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -40,16 +43,15 @@ export default function BlogPage() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] },
-    },
-  };
-
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: cubicBezier(0.21, 0.47, 0.32, 0.98) },
+  },
+};
   return (
     <div className="relative min-h-screen w-full  text-white pt-40 pb-20 px-6">
       {/* Shared Background Glow */}

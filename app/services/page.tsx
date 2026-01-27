@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Typography from "../components/common/Typography";
 
+
 const services = [
   {
     id: "web",
