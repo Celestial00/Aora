@@ -4,11 +4,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import Typography from "../components/common/Typography";
 import { cubicBezier } from "framer-motion";
-
+import { useRouter } from "next/navigation";
 
 const BLOG_POSTS = [
   {
-    id: 1,
+    id: "future-of-minimalist-interface-design",
     title: "The Future of Minimalist Interface Design",
     excerpt:
       "Exploring how 'less is more' is evolving in the age of high-fidelity spatial computing.",
@@ -16,7 +16,7 @@ const BLOG_POSTS = [
     category: "Design",
   },
   {
-    id: 2,
+    id: "scalable-component-systems",
     title: "Scaling Engineering Teams Without Friction",
     excerpt:
       "A deep dive into the cultural and technical hurdles of rapid growth.",
@@ -24,7 +24,7 @@ const BLOG_POSTS = [
     category: "Engineering",
   },
   {
-    id: 3,
+    id: "motion-as-a-design-language",
     title: "Why We Chose Framer Motion Over GSAP",
     excerpt:
       "Comparing performance, syntax, and developer experience for modern React apps.",
@@ -33,8 +33,9 @@ const BLOG_POSTS = [
   },
 ];
 
-
 export default function BlogPage() {
+  const router = useRouter();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -43,15 +44,15 @@ export default function BlogPage() {
     },
   };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: cubicBezier(0.21, 0.47, 0.32, 0.98) },
-  },
-};
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.7, ease: cubicBezier(0.21, 0.47, 0.32, 0.98) },
+    },
+  };
   return (
     <div className="relative min-h-screen w-full  text-white pt-40 pb-20 px-6">
       {/* Shared Background Glow */}
@@ -64,7 +65,11 @@ const itemVariants = {
         className="max-w-6xl mx-auto"
       >
         {/* Header Section */}
-        <motion.div variants={itemVariants} className="mb-20">
+        <motion.div
+          variants={itemVariants}
+          className="mb-20"
+          onClick={() => router.push("/blog/design-first-software")}
+        >
           <Typography
             variant="custom"
             className="text-4xl md:text-6xl font-bold tracking-tight mb-4"
@@ -82,6 +87,7 @@ const itemVariants = {
 
         {/* Featured Post */}
         <motion.div
+          onClick={() => router.push("/blog/design-first-software")}
           variants={itemVariants}
           className="group relative p-8 md:p-12 rounded-3xl border border-zinc-800 bg-zinc-900/20 backdrop-blur-sm overflow-hidden mb-12 hover:border-zinc-700 transition-colors"
         >
@@ -116,6 +122,7 @@ const itemVariants = {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {BLOG_POSTS.map((post) => (
             <motion.div
+              onClick={() => router.push("/blog/" + post.id)}
               key={post.id}
               variants={itemVariants}
               whileHover={{ y: -5 }}

@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { services } from "@/lib/servicesData.js";
+import { useRouter } from "next/navigation";
 
 export default function NavDropDown({ open }: { open: boolean }) {
   const [active, setActive] = useState(services[0]);
+  const router = useRouter();
 
   return (
     <div
@@ -32,7 +34,7 @@ export default function NavDropDown({ open }: { open: boolean }) {
             const isActive = active.id === service.id;
 
             return (
-              <div
+              <div onClick={() => router.push(service.link)}
                 key={service.id}
                 onMouseEnter={() => setActive(service)}
                 className={`

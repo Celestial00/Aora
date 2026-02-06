@@ -11,71 +11,74 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Typography from "../components/common/Typography";
+import { useRouter } from "next/navigation";
+import { services } from "@/lib/servicesData";
 
 
-const services = [
-  {
-    id: "web",
-    title: "Web Development",
-    icon: Code,
-    subServices: [
-      "Single Page Application",
-      "E-commerce Solutions",
-      "API Development",
-    ],
-  },
-  {
-    id: "mobile",
-    title: "Mobile Apps",
-    icon: Smartphone,
-    subServices: [
-      "Flutter Applications",
-      "iOS Applications",
-      "Android Applications",
-      "Cross-Platform Apps",
-    ],
-  },
-  {
-    id: "ai",
-    title: "AI Solutions",
-    icon: Brain,
-    subServices: [
-      "Machine Learning Models",
-      "AI Chatbots",
-      "Data Analytics",
-      "AI Integrations",
-    ],
-  },
-  {
-    id: "cloud",
-    title: "Cloud Services",
-    icon: Cloud,
-    subServices: [
-      "AWS Infrastructure",
-      "Cloud Migration",
-      "Serverless Architecture",
-      "Cloud Security",
-    ],
-  },
-  {
-    id: "automation",
-    title: "Automation",
-    icon: Settings,
-    subServices: [
-      "Process Automation",
-      "Workflow Automation",
-      "CI / CD Pipelines",
-      "Task Scheduling",
-    ],
-  },
-];
+// const services = [
+//   {
+//     id: "web",
+//     title: "Web Development",
+//     icon: Code,
+//     subServices: [
+//       "Single Page Application",
+//       "E-commerce Solutions",
+//       "API Development",
+//     ],
+//   },
+//   {
+//     id: "mobile",
+//     title: "Mobile Apps",
+//     icon: Smartphone,
+//     subServices: [
+//       "Flutter Applications",
+//       "iOS Applications",
+//       "Android Applications",
+//       "Cross-Platform Apps",
+//     ],
+//   },
+//   {
+//     id: "ai",
+//     title: "AI Solutions",
+//     icon: Brain,
+//     subServices: [
+//       "Machine Learning Models",
+//       "AI Chatbots",
+//       "Data Analytics",
+//       "AI Integrations",
+//     ],
+//   },
+//   {
+//     id: "cloud",
+//     title: "Cloud Services",
+//     icon: Cloud,
+//     subServices: [
+//       "AWS Infrastructure",
+//       "Cloud Migration",
+//       "Serverless Architecture",
+//       "Cloud Security",
+//     ],
+//   },
+//   {
+//     id: "automation",
+//     title: "Automation",
+//     icon: Settings,
+//     subServices: [
+//       "Process Automation",
+//       "Workflow Automation",
+//       "CI / CD Pipelines",
+//       "Task Scheduling",
+//     ],
+//   },
+// ];
 
 export default function ServicesPage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const router = useRouter();
 
   return (
     <div className="relative min-h-screen w-full pt-40 pb-20 px-6  overflow-hidden">
-      {/* Dynamic Background Glow that follows the active service */}
+    
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10 h-[1000px] w-[1000px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
@@ -120,6 +123,7 @@ export default function ServicesPage() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="relative group border-b border-zinc-800/50 py-12 md:py-16 transition-colors duration-500 cursor-none"
+                onClick={() => router.push(service.link)}
               >
               
                 <AnimatePresence>
